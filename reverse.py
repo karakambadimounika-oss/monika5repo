@@ -12,8 +12,8 @@ def ispalindrome(num):
     return num==reverse(num)
 
 
-print(reverse (121))
-print(ispalindrome(121))
+print(reverse (1234))
+print(ispalindrome(1213))
 
 
 
