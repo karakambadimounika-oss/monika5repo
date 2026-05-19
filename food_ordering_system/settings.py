@@ -137,4 +137,4 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST_USER = 'karakambadimounika1@gmail.com'
 
-EMAIL_HOST_PASSWORD = 'sckh nyom atpb oazu'
+EMAIL_HOST_PASSWORD = "mypassword"
