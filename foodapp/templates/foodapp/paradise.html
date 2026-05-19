@@ -1,0 +1,438 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Paradise Biryani Menu</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f7f3ef;
+}
+
+/* NAVBAR */
+
+nav{
+    width:100%;
+    background:linear-gradient(to right,#ff512f,#ff6a00);
+    padding:20px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+.logo{
+    color:white;
+    font-size:42px;
+    font-weight:700;
+}
+
+nav ul{
+    display:flex;
+    gap:40px;
+    list-style:none;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:24px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+nav ul li a:hover{
+    color:#ffe0d5;
+}
+
+/* HEADING */
+
+.main-title{
+    text-align:center;
+    margin-top:50px;
+    margin-bottom:40px;
+}
+
+.main-title h1{
+    font-size:70px;
+    color:#2b1207;
+    font-weight:700;
+}
+
+.main-title p{
+    font-size:28px;
+    color:#ff5722;
+    margin-top:10px;
+}
+
+/* MENU GRID */
+
+.menu-container{
+
+    width:92%;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:40px;
+
+    padding-bottom:60px;
+}
+
+/* CARD */
+
+.menu-card{
+
+    background:white;
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    box-shadow:0 10px 30px rgba(0,0,0,0.12);
+
+    transition:0.4s;
+}
+
+.menu-card:hover{
+
+    transform:translateY(-10px);
+}
+
+.menu-card img{
+
+    width:100%;
+    height:290px;
+
+    object-fit:cover;
+}
+
+/* DETAILS */
+
+.menu-details{
+
+    padding:25px;
+    text-align:center;
+}
+
+.menu-details h2{
+
+    font-size:38px;
+    color:#222;
+    margin-bottom:10px;
+}
+
+.desc{
+
+    color:#666;
+    font-size:20px;
+    line-height:1.6;
+    margin-bottom:15px;
+}
+
+.price{
+
+    color:#ff5722;
+    font-size:38px;
+    font-weight:700;
+    margin-bottom:20px;
+}
+
+/* BUTTON */
+
+.add-btn{
+
+    background:linear-gradient(to right,#ff512f,#ff6a00);
+
+    color:white;
+
+    border:none;
+
+    padding:16px 35px;
+
+    font-size:22px;
+
+    border-radius:15px;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.add-btn:hover{
+
+    transform:scale(1.05);
+}
+
+/* MOBILE */
+
+@media(max-width:1100px){
+
+    .menu-container{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .main-title h1{
+        font-size:55px;
+    }
+}
+
+@media(max-width:750px){
+
+    .menu-container{
+        grid-template-columns:1fr;
+    }
+
+    nav{
+        flex-direction:column;
+        gap:20px;
+    }
+
+    nav ul{
+        gap:20px;
+    }
+
+    .main-title h1{
+        font-size:42px;
+    }
+
+    .logo{
+        font-size:32px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <div class="logo">🍛 Paradise Biryani</div>
+
+    <ul>
+
+        <li><a href="/">Home</a></li>
+
+        <li><a href="/restaurants/">Restaurants</a></li>
+
+        <li><a href="/cart/">Cart</a></li>
+
+        <li><a href="/tracking/">Tracking</a></li>
+
+    </ul>
+
+</nav>
+
+<!-- TITLE -->
+
+<div class="main-title">
+
+    <p>Welcome To</p>
+
+    <h1>PARADISE BIRYANI MENU</h1>
+
+</div>
+
+<!-- MENU ITEMS -->
+
+<div class="menu-container">
+
+    <!-- ITEM 1 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1633945274405-b6c8069047b0?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Chicken Biryani</h2>
+
+            <p class="desc">
+                Aromatic basmati rice cooked with spicy chicken
+            </p>
+
+            <div class="price">₹299</div>
+
+            <a href="/add-to-cart/?name=Chicken_Biryani&price=299">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ITEM 2 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1701579231349-d7459c40919d?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Mutton Biryani</h2>
+
+            <p class="desc">
+                Delicious mutton biryani with rich Indian spices
+            </p>
+
+            <div class="price">₹399</div>
+
+            <a href="/add-to-cart/?name=Mutton_Biryani&price=399">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ITEM 3 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1642821373181-696a54913e93?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Egg Biryani</h2>
+
+            <p class="desc">
+                Tasty egg biryani with flavorful masala rice
+            </p>
+
+            <div class="price">₹249</div>
+
+            <a href="/add-to-cart/?name=Egg_Biryani&price=249">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ITEM 4 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Paneer Biryani</h2>
+
+            <p class="desc">
+                Fragrant rice cooked with soft paneer cubes
+            </p>
+
+            <div class="price">₹279</div>
+
+            <a href="/add-to-cart/?name=Paneer_Biryani&price=279">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ITEM 5 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Chicken 65</h2>
+
+            <p class="desc">
+                Crispy spicy chicken starter loved by everyone
+            </p>
+
+            <div class="price">₹199</div>
+
+            <a href="/add-to-cart/?name=Chicken_65&price=199">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ITEM 6 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Veg Fried Rice</h2>
+
+            <p class="desc">
+                Wok tossed rice with vegetables and sauces
+            </p>
+
+            <div class="price">₹179</div>
+
+            <a href="/add-to-cart/?name=Veg_Fried_Rice&price=179">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,428 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Payment</title>
+
+    <link rel="stylesheet"
+          href="{% static 'foodapp/css/style.css' %}">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:
+            linear-gradient(rgba(0,0,0,0.6),
+            rgba(0,0,0,0.6)),
+            url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop');
+
+            background-size:cover;
+            background-position:center;
+        }
+
+        .payment-container{
+            width:100%;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+        }
+
+        .payment-box{
+
+            width:500px;
+            padding:40px;
+            border-radius:25px;
+
+            background:rgba(255,255,255,0.15);
+
+            backdrop-filter:blur(15px);
+
+            box-shadow:0 8px 30px rgba(0,0,0,0.4);
+
+            color:white;
+        }
+
+        .payment-box h1{
+
+            text-align:center;
+            font-size:60px;
+            margin-bottom:15px;
+            color:#ff5722;
+        }
+
+        .payment-box p{
+
+            text-align:center;
+            font-size:22px;
+            margin-bottom:35px;
+        }
+
+        .payment-option{
+
+            display:flex;
+            align-items:center;
+
+            gap:15px;
+
+            background:white;
+
+            color:black;
+
+            padding:22px;
+
+            margin-bottom:20px;
+
+            border-radius:18px;
+
+            font-size:22px;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .payment-option:hover{
+
+            transform:scale(1.03);
+        }
+
+        .payment-option input{
+
+            width:22px;
+            height:22px;
+        }
+
+        .payment-details{
+
+            display:none;
+
+            margin-bottom:20px;
+        }
+
+        .payment-details input{
+
+            width:100%;
+
+            padding:16px;
+
+            margin-bottom:15px;
+
+            border:none;
+
+            border-radius:12px;
+
+            font-size:18px;
+        }
+
+        .card-row{
+
+            display:flex;
+            gap:10px;
+        }
+
+        .pay-btn{
+
+            width:100%;
+
+            padding:18px;
+
+            border:none;
+
+            border-radius:15px;
+
+            background:#ff5722;
+
+            color:white;
+
+            font-size:28px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            margin-top:15px;
+
+            transition:0.3s;
+        }
+
+        .pay-btn:hover{
+
+            background:#e64a19;
+            transform:scale(1.03);
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="payment-container">
+
+    <div class="payment-box">
+
+        <h1>Payment</h1>
+
+        <p>Choose your preferred payment method</p>
+
+        <form onsubmit="return processPayment()">
+
+            {% csrf_token %}
+
+            <!-- PhonePe -->
+            <label class="payment-option">
+
+                <input type="radio"
+                       name="payment"
+                       onclick="showForm('phonepe')">
+
+                📱 PhonePe
+
+            </label>
+
+            <div id="phonepe"
+                 class="payment-details">
+
+                <input type="text"
+                       id="phonepe-number"
+                       placeholder="Enter PhonePe Number">
+
+                <input type="text"
+                       id="phonepe-upi"
+                       placeholder="Enter UPI ID">
+
+            </div>
+
+            <!-- Google Pay -->
+            <label class="payment-option">
+
+                <input type="radio"
+                       name="payment"
+                       onclick="showForm('gpay')">
+
+                💳 Google Pay
+
+            </label>
+
+            <div id="gpay"
+                 class="payment-details">
+
+                <input type="text"
+                       id="gpay-number"
+                       placeholder="Enter Google Pay Number">
+
+                <input type="text"
+                       id="gpay-upi"
+                       placeholder="Enter UPI ID">
+
+            </div>
+
+            <!-- Card -->
+            <label class="payment-option">
+
+                <input type="radio"
+                       name="payment"
+                       onclick="showForm('card')">
+
+                💳 Credit / Debit Card
+
+            </label>
+
+            <div id="card"
+                 class="payment-details">
+
+                <input type="text"
+                       id="card-name"
+                       placeholder="Card Holder Name">
+
+                <input type="text"
+                       id="card-number"
+                       placeholder="Card Number">
+
+                <div class="card-row">
+
+                    <input type="text"
+                           id="expiry"
+                           placeholder="MM/YY">
+
+                    <input type="password"
+                           id="cvv"
+                           placeholder="CVV">
+
+                </div>
+
+            </div>
+
+            <!-- COD -->
+            <label class="payment-option">
+
+                <input type="radio"
+                       name="payment"
+                       onclick="showForm('cod')">
+
+                🚚 Cash On Delivery
+
+            </label>
+
+            <div id="cod"
+                 class="payment-details">
+
+                <input type="text"
+                       id="address"
+                       placeholder="Enter Address">
+
+                <input type="text"
+                       id="mobile"
+                       placeholder="Enter Mobile Number">
+
+                <input type="email"
+                       id="email"
+                       placeholder="Enter Your Email">
+
+            </div>
+
+            <button type="submit"
+                    class="pay-btn">
+
+                Pay Now
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+
+function showForm(method) {
+
+    // Hide all forms
+    document.querySelectorAll('.payment-details').forEach(form => {
+
+        form.style.display = 'none';
+    });
+
+    // Show selected form
+    document.getElementById(method).style.display = 'block';
+}
+
+function processPayment() {
+
+    let paymentSelected =
+        document.querySelector('input[name="payment"]:checked');
+
+    if (!paymentSelected) {
+
+        alert("Please select payment method");
+        return false;
+    }
+
+    // PhonePe
+    if (document.getElementById("phonepe").style.display === "block") {
+
+        let number =
+            document.getElementById("phonepe-number").value;
+
+        let upi =
+            document.getElementById("phonepe-upi").value;
+
+        if (number === "" || upi === "") {
+
+            alert("Please enter PhonePe details");
+            return false;
+        }
+    }
+
+    // Google Pay
+    if (document.getElementById("gpay").style.display === "block") {
+
+        let number =
+            document.getElementById("gpay-number").value;
+
+        let upi =
+            document.getElementById("gpay-upi").value;
+
+        if (number === "" || upi === "") {
+
+            alert("Please enter Google Pay details");
+            return false;
+        }
+    }
+
+    // Card
+    if (document.getElementById("card").style.display === "block") {
+
+        let cardName =
+            document.getElementById("card-name").value;
+
+        let cardNumber =
+            document.getElementById("card-number").value;
+
+        let expiry =
+            document.getElementById("expiry").value;
+
+        let cvv =
+            document.getElementById("cvv").value;
+
+        if (cardName === "" ||
+            cardNumber === "" ||
+            expiry === "" ||
+            cvv === "") {
+
+            alert("Please fill all card details");
+            return false;
+        }
+    }
+
+    // COD
+    if (document.getElementById("cod").style.display === "block") {
+
+        let address =
+            document.getElementById("address").value;
+
+        let mobile =
+            document.getElementById("mobile").value;
+
+        let email =
+            document.getElementById("email").value;
+
+        if (address === "" ||
+            mobile === "" ||
+            email === "") {
+
+            alert("Please enter delivery details");
+            return false;
+        }
+
+        // Fake SMS
+        alert(
+            "📩 SMS Sent to " + mobile +
+            "\n\nYour order has been placed successfully! 🚀"
+        );
+    }
+
+    // Redirect to tracking page
+    window.location.href = "/tracking/";
+
+    return false;
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Chocolate Room</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f5f5f5;
+}
+
+/* NAVBAR */
+
+nav{
+    background:#4e342e;
+    padding:20px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav h1{
+    color:white;
+    font-size:40px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:30px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:22px;
+}
+
+/* TITLE */
+
+.menu-title{
+    text-align:center;
+    font-size:60px;
+    color:#4e342e;
+    margin:40px 0;
+}
+
+/* GRID */
+
+.menu-container{
+    width:90%;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    padding-bottom:60px;
+}
+
+/* CARD */
+
+.menu-card{
+    background:white;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    transition:0.3s;
+}
+
+.menu-card:hover{
+    transform:translateY(-10px);
+}
+
+.menu-card img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+}
+
+.menu-details{
+    padding:20px;
+    text-align:center;
+}
+
+.menu-details h2{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.menu-details p{
+    color:#666;
+    margin-bottom:15px;
+    font-size:22px;
+}
+
+.add-btn{
+    background:#4e342e;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.add-btn:hover{
+    background:#3e2723;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+.menu-container{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <h1>🍫 Chocolate Room</h1>
+
+    <ul>
+
+        <li><a href="/">Home</a></li>
+        <li><a href="/restaurants/">Restaurants</a></li>
+        <li><a href="/cart/">Cart</a></li>
+
+    </ul>
+
+</nav>
+
+<!-- TITLE -->
+
+<h1 class="menu-title">
+    Desserts & Cakes
+</h1>
+
+<!-- MENU -->
+
+<div class="menu-container">
+
+    <!-- ITEM 1 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Chocolate Cake</h2>
+
+            <p>Soft chocolate layered cake</p>
+
+            <p>₹299</p>
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </div>
+
+    </div>
+<!-- ITEM 1 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Chocolate Cake</h2>
+
+        <p>₹179</p>
+
+        <a href="/add-to-cart/?name=Chocolate_Cake&price=179">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 2 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Ice Cream Sundae</h2>
+
+        <p>₹149</p>
+
+        <a href="/add-to-cart/?name=Ice_Cream_Sundae&price=149">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 3 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Brownie With Ice Cream</h2>
+
+        <p>₹199</p>
+
+        <a href="/add-to-cart/?name=Brownie_IceCream&price=199">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 4 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Chocolate Donut</h2>
+
+        <p>₹99</p>
+
+        <a href="/add-to-cart/?name=Chocolate_Donut&price=99">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 5 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Strawberry Pastry</h2>
+
+        <p>₹129</p>
+
+        <a href="/add-to-cart/?name=Strawberry_Pastry&price=129">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 6 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1577805947697-89e18249d767?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Chocolate Milkshake</h2>
+
+        <p>₹159</p>
+
+        <a href="/add-to-cart/?name=Chocolate_Milkshake&price=159">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+    <!-- ITEM 2 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Ice Cream</h2>
+
+            <p>Chocolate vanilla combo scoop</p>
+
+            <p>₹149</p>
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- ITEM 3 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Chocolate Donut</h2>
+
+            <p>Fresh donut with chocolate glaze</p>
+
+            <p>₹99</p>
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
