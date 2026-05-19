@@ -1,0 +1,632 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ restaurant_name }} Menu</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f4f4;
+        }
+
+        /* NAVBAR */
+
+        nav{
+            width:100%;
+            padding:20px 60px;
+            background:linear-gradient(to right,#ff512f,#ff6a00);
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
+
+        nav h1{
+            color:white;
+            font-size:45px;
+        }
+
+        nav ul{
+            display:flex;
+            list-style:none;
+            gap:30px;
+        }
+
+        nav ul li a{
+            color:white;
+            text-decoration:none;
+            font-size:24px;
+        }
+
+        /* HERO */
+
+        .hero{
+
+            width:100%;
+            min-height:350px;
+
+            background:white;
+
+            display:flex;
+            flex-direction:column;
+
+            justify-content:center;
+            align-items:center;
+
+            text-align:center;
+
+            position:relative;
+
+            overflow:hidden;
+        }
+
+        .hero h1{
+
+            font-size:75px;
+            color:#2e7d32;
+
+            margin-bottom:15px;
+        }
+
+        .hero p{
+
+            font-size:30px;
+            color:#666;
+        }
+
+        .leaf{
+
+            position:absolute;
+            width:80px;
+            opacity:0.2;
+        }
+
+        .leaf1{
+            top:20px;
+            left:40px;
+        }
+
+        .leaf2{
+            bottom:20px;
+            right:40px;
+        }
+
+        /* FEATURES */
+
+        .features{
+
+            width:90%;
+            margin:40px auto;
+
+            display:flex;
+            justify-content:center;
+            gap:30px;
+            flex-wrap:wrap;
+        }
+
+        .feature-box{
+
+            background:white;
+
+            width:280px;
+
+            padding:25px;
+
+            border-radius:20px;
+
+            text-align:center;
+
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-box h2{
+
+            color:#2e7d32;
+            margin-bottom:10px;
+        }
+
+        .feature-box p{
+
+            color:#666;
+            font-size:18px;
+        }
+
+        /* TITLE */
+
+        .section-title{
+
+            text-align:center;
+
+            font-size:55px;
+
+            color:#ff5722;
+
+            margin-top:30px;
+            margin-bottom:40px;
+        }
+
+        /* MENU GRID */
+
+        .menu-container{
+
+            width:90%;
+            margin:auto;
+
+            display:grid;
+
+            grid-template-columns:
+            repeat(auto-fit,minmax(350px,1fr));
+
+            gap:35px;
+
+            padding-bottom:80px;
+        }
+
+        /* CARD */
+
+        .menu-card{
+
+            background:white;
+
+            border-radius:25px;
+
+            overflow:hidden;
+
+            box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+            transition:0.4s;
+        }
+
+        .menu-card:hover{
+
+            transform:translateY(-10px);
+        }
+
+        .menu-card img{
+
+            width:100%;
+            height:240px;
+
+            object-fit:cover;
+        }
+
+        .menu-details{
+
+            padding:25px;
+        }
+
+        .menu-details h2{
+
+            font-size:35px;
+            color:#222;
+
+            margin-bottom:10px;
+        }
+
+        .menu-details p{
+
+            color:#666;
+            font-size:20px;
+
+            margin-bottom:15px;
+        }
+
+        .price{
+
+            font-size:32px;
+            color:#ff5722;
+
+            font-weight:bold;
+
+            margin-bottom:20px;
+        }
+
+        /* BUTTON */
+
+        .add-btn{
+
+            width:100%;
+
+            padding:15px;
+
+            border:none;
+
+            border-radius:15px;
+
+            background:#43a047;
+
+            color:white;
+
+            font-size:22px;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:0.3s;
+        }
+
+        .add-btn:hover{
+
+            background:#2e7d32;
+        }
+
+        /* FOOTER */
+
+        .footer{
+
+            background:white;
+
+            padding:40px;
+
+            text-align:center;
+
+            font-size:28px;
+
+            color:#2e7d32;
+
+            font-weight:bold;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:900px){
+
+            .hero h1{
+                font-size:50px;
+            }
+
+            .hero p{
+                font-size:22px;
+            }
+
+            nav{
+                flex-direction:column;
+                gap:20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+    <h1>🍔 FoodieExpress</h1>
+
+    <ul>
+
+        <li><a href="/">Home</a></li>
+
+        <li><a href="/restaurants/">Restaurants</a></li>
+
+        <li><a href="/cart/">Cart</a></li>
+
+        <li><a href="/tracking/">Tracking</a></li>
+
+    </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <img class="leaf leaf1"
+         src="https://cdn-icons-png.flaticon.com/512/765/765613.png">
+
+    <h1>{{ restaurant_name }} Green Bowl  Menu</h1>
+
+    <p>
+        Healthy food for a healthy life 🥗
+    </p>
+
+    <img class="leaf leaf2"
+         src="https://cdn-icons-png.flaticon.com/512/765/765613.png">
+
+</section>
+
+<!-- FEATURES -->
+
+<div class="features">
+
+    <div class="feature-box">
+
+        <h2>🥬 100% Fresh</h2>
+
+        <p>Fresh ingredients everyday</p>
+
+    </div>
+
+    <div class="feature-box">
+
+        <h2>🚚 Fast Delivery</h2>
+
+        <p>Delivered in 20 minutes</p>
+
+    </div>
+
+    <div class="feature-box">
+
+        <h2>❤️ Healthy & Tasty</h2>
+
+        <p>Made with love & nutrition</p>
+
+    </div>
+
+</div>
+
+<!-- TITLE -->
+
+<h1 class="section-title">
+    Our Special Items
+</h1>
+
+<!-- MENU -->
+
+<div class="menu-container">
+
+    <!-- ITEM 1 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Healthy Salad Bowl</h2>
+
+            <p>
+                Fresh veggies, nuts & healthy dressing
+            </p>
+
+            <div class="price">₹199</div>
+
+            <a href="/add-to-cart/?name=Healthy_Salad_Bowl&price=199&image=https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- ITEM 2 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Quinoa Power Bowl</h2>
+
+            <p>
+                Quinoa, avocado & chickpeas
+            </p>
+
+            <div class="price">₹249</div>
+
+            <a href="/add-to-cart/?name=Quinoa_Power_Bowl&price=249&image=https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+    <!-- ITEM 1 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Healthy Salad Bowl</h2>
+
+         <div class="price">₹100</div>
+
+
+        <a href="/add-to-cart/?name=Healthy_Salad_Bowl&price=199">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 2 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Fruit Bowl</h2>
+
+         <div class="price">₹149</div>
+
+
+        <a href="/add-to-cart/?name=Fruit_Bowl&price=149">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 3 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Veggie Salad</h2>
+
+         <div class="price">₹179</div>
+
+
+        <a href="/add-to-cart/?name=Veggie_Salad&price=179">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 4 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Fresh Orange Juice</h2>
+
+         <div class="price">₹99</div>
+
+
+        <a href="/add-to-cart/?name=Fresh_Orange_Juice&price=99">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 5 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1511690743698-d9d85f2fbf38?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Avocado Toast</h2>
+
+         <div class="price">₹299</div>
+
+
+        <a href="/add-to-cart/?name=Avocado_Toast&price=229">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+<!-- ITEM 6 -->
+
+<div class="menu-card">
+
+    <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=1200&auto=format&fit=crop">
+
+    <div class="menu-details">
+
+        <h2>Protein Breakfast</h2>
+
+         <div class="price">₹199</div>
+
+
+        <a href="/add-to-cart/?name=Protein_Breakfast&price=249">
+
+            <button class="add-btn">
+                Add To Cart
+            </button>
+
+        </a>
+
+    </div>
+
+</div>
+
+    <!-- ITEM 3 -->
+
+    <div class="menu-card">
+
+        <img src="https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="menu-details">
+
+            <h2>Green Smoothie</h2>
+
+            <p>
+                Spinach, apple & detox drink
+            </p>
+
+            <div class="price">₹149</div>
+
+            <a href="/add-to-cart/?name=Green_Smoothie&price=149&image=https://images.unsplash.com/photo-1623065422902-30a2d299bbe4?q=80&w=1200&auto=format&fit=crop">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+    🌱 Eat Healthy, Stay Healthy 🌱
+
+</div>
+
+</body>
+</html>
